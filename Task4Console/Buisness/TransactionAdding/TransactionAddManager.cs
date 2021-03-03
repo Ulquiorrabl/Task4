@@ -37,23 +37,23 @@ namespace Task4Console.Buisness.TransactionAdding
             this._transactionFactory = new TransactionFactory();
             this._reportWatcher = new ReportWatcher(fileSystemWatcher);
             this._data = new List<CSVTransaction>();
-            this._reportWatcher.ReportFileAdded += new EventHandler<string>(OnTransactionFileCreated);
+            this._reportWatcher.ReportFileAdded += new ReportWatcher.ReportFileAddedHandler(OnTransactionFileCreated);
             this._reportWatcher.StartWatch();
             Console.WriteLine("WatchStarted");
         }
 
-        private void OnTransactionFileCreated(object obj, string filePath)
+        private void OnTransactionFileCreated(string filePath, string fileName)
         {
-            Task.Factory.StartNew(() => CreateParsingTask(filePath));
+            Task.Factory.StartNew(() => CreateParsingTask(filePath, fileName));
         }
 
-        private void CreateParsingTask(string filePath)
+        private void CreateParsingTask(string filePath, string fileName)
         {
             while (true)
             {
                 try
                 {
-                    ParseTransaction(filePath);
+                    ParseTransaction(filePath, fileName);
                     break;
                 }
                 catch
@@ -64,14 +64,15 @@ namespace Task4Console.Buisness.TransactionAdding
             }
         }
 
-        private void ParseTransaction(string filePath)
+        private void ParseTransaction(string filePath, string fileName)
         {
+            string managerName = fileName.Split('_')[0];
             using(StreamReader reader = new StreamReader(filePath))
             {
                 _parser = new CSVParser(reader);
                 foreach(var data in _parser.GetAllData())
                 {
-                    this._data.Add(_transactionFactory.CreateNew(data));
+                    this._data.Add(_transactionFactory.CreateNew(data, managerName));
                 }
                 _parser.Dispose();
             }

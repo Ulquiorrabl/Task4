@@ -24,6 +24,7 @@ namespace Task4Console.ADO.AddTransaction
 
         public AppTransactionOperator(DbContext context)
         {
+            context.Database.CreateIfNotExists();
             Console.WriteLine("InitStarted");
             managerRepository = new GenericRepository<Manager>(context);
             productRepostitory = new GenericRepository<Product>(context);
@@ -36,13 +37,13 @@ namespace Task4Console.ADO.AddTransaction
         {
             Console.WriteLine("Add started");
             User user = new User { Name = obj.Client };
-            Product product = new Product { Name = obj.Product, Coast = obj.TotalCoast};
-            Manager manager = new Manager { Name = "Manager" };
+            Product product = new Product { Name = obj.Product, Coast = obj.TotalCost};
+            Manager manager = new Manager { Name = obj.Manager };
             userRepository.Add(user);
             productRepostitory.Add(product);
             managerRepository.Add(manager);
             transactionRepository.Add(new Transaction { Date = obj.Date, User = user, Product = product, 
-                Manager = manager, Coast = obj.TotalCoast});
+                Manager = manager, Coast = obj.TotalCost});
             this.Save();
             Console.WriteLine("Saved");
         }
@@ -63,7 +64,6 @@ namespace Task4Console.ADO.AddTransaction
             managerRepository.Save();
             userRepository.Save();
             transactionRepository.Save();
-            Console.WriteLine("Saved");
         }
     }
 }

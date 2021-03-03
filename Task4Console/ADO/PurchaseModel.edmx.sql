@@ -1,8 +1,8 @@
-
+﻿ц
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/28/2021 23:31:48
+-- Date Created: 03/02/2021 22:23:24
 -- Generated from EDMX file: F:\Repositories\Task4\Task4Console\ADO\PurchaseModel.edmx
 -- --------------------------------------------------
 

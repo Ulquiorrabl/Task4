@@ -10,7 +10,9 @@ namespace Task4Console.Buisness.ReportWatching
 {
     public class ReportWatcher
     {
-        public event EventHandler<string> ReportFileAdded;
+        public delegate void ReportFileAddedHandler(string path, string fileName);
+
+        public event ReportFileAddedHandler ReportFileAdded;
 
         private FileSystemWatcher _watcher;
         public ReportWatcher(FileSystemWatcher systemWatcher)
@@ -33,7 +35,7 @@ namespace Task4Console.Buisness.ReportWatching
 
         private void OnCreated(object source, FileSystemEventArgs e)
         {
-            ReportFileAdded?.Invoke(this, e.FullPath);
+            ReportFileAdded?.Invoke(e.FullPath, e.Name);
         }
     }
 }

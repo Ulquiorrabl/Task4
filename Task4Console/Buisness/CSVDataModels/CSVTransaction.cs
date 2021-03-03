@@ -12,21 +12,25 @@ namespace Task4Console.Buisness.CSVDataModels
 
         public string Client { get; private set; }
 
+        public string Manager { get; private set; }
+
         public string Product { get; private set; }
 
-        public double TotalCoast { get; private set; }
+        public double TotalCost { get; private set; }
 
-        public CSVTransaction(DateTime date, string clientName, string productName,double totalCoast)
+
+        public CSVTransaction(DateTime date, string clientName, string productName,double totalCost, string managerName)
         {
             this.Date = date;
             this.Client = clientName;
             this.Product = productName;
-            this.TotalCoast = totalCoast;
+            this.TotalCost = totalCost;
+            this.Manager = managerName;
         }
 
         public override string ToString()
         {
-            return Date.ToString() + Client + Product + TotalCoast.ToString(); 
+            return Date.ToString() + Client + Product + TotalCost.ToString(); 
         }
     }
 }
