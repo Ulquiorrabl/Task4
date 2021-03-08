@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Data.Entity;
 using System.Threading.Tasks;
-using Task4Console.ADO.UnitOfWork;
-using Task4Console.ADO.Repositories.GenericRepository.GenericRepositoryImplementation;
-using Task4Console.Buisness.CSVDataModels;
-using Task4Console.ADO.TransactionModel;
+using Task4Service.ADO.UnitOfWork;
+using Task4Service.ADO.Repositories.GenericRepository.GenericRepositoryImplementation;
+using Task4Service.Buisness.CSVDataModels;
+using Task4Service.ADO.TransactionModel;
 
-namespace Task4Console.ADO.AddTransaction
+namespace Task4Service.ADO.AddTransaction
 {
     class AppTransactionOperator : IUnitOfWork<CSVTransaction>
     {
@@ -29,10 +29,12 @@ namespace Task4Console.ADO.AddTransaction
             productRepostitory = new GenericRepository<Product>(context);
             transactionRepository = new GenericRepository<Transaction>(context);
             userRepository = new GenericRepository<User>(context);
+            
         }
 
         public void Add(CSVTransaction obj)
         {
+
             User user = new User { UserName = obj.Client };
             Product product = new Product { ProductName = obj.Product, Cost = obj.TotalCost };
             Manager manager = new Manager { ManagerName = obj.Manager };

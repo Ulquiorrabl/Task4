@@ -25,14 +25,15 @@ namespace Task4Console
             TransactionAddManager manager = new TransactionAddManager(fileSystemWatcher, trv);
             Console.ReadKey();*/
 
-            using(PurchaseModelContainer context = new PurchaseModelContainer())
-            {
-                AppTransactionOperator apo = new AppTransactionOperator(context);
-                FileSystemWatcher watcher = new FileSystemWatcher();
-                TransactionAddManager manager = new TransactionAddManager(watcher, apo);
-                TransactionAddManager manager2 = new TransactionAddManager(watcher, trv);
-                Console.ReadKey();
-            }
+            var context = new ADO.TransactionModel.TransactionContext(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            AppTransactionOperator apo = new AppTransactionOperator(context);
+            FileSystemWatcher watcher1 = new FileSystemWatcher();
+            FileSystemWatcher watcher2 = new FileSystemWatcher();
+            TransactionAddManager manager = new TransactionAddManager(watcher1, apo);
+            //TransactionAddManager manager2 = new TransactionAddManager(watcher2, trv);
+            Console.ReadKey();
+
+                
 
 
 

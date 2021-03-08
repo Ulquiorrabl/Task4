@@ -29,8 +29,11 @@ namespace Task4Service
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.ServiceName = "Service1";
+            // 
+            // Service1
+            // 
+            this.ServiceName = "Task4Service";
+
         }
 
         #endregion

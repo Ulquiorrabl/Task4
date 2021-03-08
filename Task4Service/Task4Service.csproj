@@ -44,7 +44,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -56,32 +59,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADO\Manager.cs">
-      <DependentUpon>PurchaseModel.tt</DependentUpon>
+    <Compile Include="AddTransaction\AppTransactionOperator.cs" />
+    <Compile Include="DAO\Repositories\GenericRepository\GenericRepositoryImplementation\GenericRepository.cs" />
+    <Compile Include="DAO\Repositories\GenericRepository\IGenericRepository.cs" />
+    <Compile Include="DAO\TransactionModel\Manager.cs" />
+    <Compile Include="DAO\TransactionModel\Product.cs" />
+    <Compile Include="DAO\TransactionModel\Transaction.cs" />
+    <Compile Include="DAO\TransactionModel\TransactionContext.cs" />
+    <Compile Include="DAO\TransactionModel\User.cs" />
+    <Compile Include="DAO\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="BL\CSVDataModels\CSVTransaction.cs" />
+    <Compile Include="BL\CSVParsing\CSVParser.cs" />
+    <Compile Include="BL\CSVParsing\ICSVParser.cs" />
+    <Compile Include="BL\CSVTaskScheduler\ConcurrentTaskScheduler.cs" />
+    <Compile Include="BL\DataFactories\TransactionFactory.cs" />
+    <Compile Include="BL\ReportWatching\ReportWatcher.cs" />
+    <Compile Include="BL\TransactionAdding\TransactionAddManager.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ADO\Product.cs">
-      <DependentUpon>PurchaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\PurchaseModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PurchaseModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\PurchaseModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PurchaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\PurchaseModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PurchaseModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\Transaction.cs">
-      <DependentUpon>PurchaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\User.cs">
-      <DependentUpon>PurchaseModel.tt</DependentUpon>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>
@@ -93,31 +91,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="ADO\PurchaseModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PurchaseModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ADO\PurchaseModel.edmx.diagram">
-      <DependentUpon>PurchaseModel.edmx</DependentUpon>
-    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Buisness\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ADO\PurchaseModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PurchaseModel.Context.cs</LastGenOutput>
-      <DependentUpon>PurchaseModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="ADO\PurchaseModel.edmx.sql" />
-    <Content Include="ADO\PurchaseModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PurchaseModel.cs</LastGenOutput>
-      <DependentUpon>PurchaseModel.edmx</DependentUpon>
-    </Content>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service1.resx">
+      <DependentUpon>Service1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

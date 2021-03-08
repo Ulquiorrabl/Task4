@@ -15,11 +15,6 @@ namespace Task4Service
         /// </summary>
         static void Main()
         {
-            using(PurchaseModelContainer db = new PurchaseModelContainer())
-            {
-
-                
-            }
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {

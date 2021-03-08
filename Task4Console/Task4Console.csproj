@@ -79,70 +79,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddTransaction\AppTransactionOperator.cs" />
-    <Compile Include="ADO\Manager.cs">
-      <DependentUpon>TransactionModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\Product.cs">
-      <DependentUpon>TransactionModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\PurchaseModel.Designer.cs">
-      <DependentUpon>PurchaseModel.edmx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="ADO\Repositories\GenericRepository\GenericRepositoryImplementation\GenericRepository.cs" />
-    <Compile Include="ADO\Repositories\GenericRepository\IGenericRepository.cs" />
-    <Compile Include="ADO\Transaction.cs">
-      <DependentUpon>TransactionModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\TransactionModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TransactionModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\TransactionModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TransactionModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ADO\UnitOfWork\IUnitOfWork.cs" />
-    <Compile Include="ADO\User.cs">
-      <DependentUpon>TransactionModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Buisness\CSVDataModels\CSVTransaction.cs" />
-    <Compile Include="Buisness\CSVParsing\CSVParser.cs" />
-    <Compile Include="Buisness\CSVParsing\ICSVParser.cs" />
-    <Compile Include="Buisness\CSVTaskScheduler\ConcurrentTaskScheduler.cs" />
-    <Compile Include="Buisness\ReportWatching\ReportWatcher.cs" />
-    <Compile Include="Buisness\TransactionAdding\TransactionAddManager.cs" />
-    <Compile Include="Buisness\DataFactories\TransactionFactory.cs" />
+    <Compile Include="DAL\Repositories\GenericRepository\GenericRepositoryImplementation\GenericRepository.cs" />
+    <Compile Include="DAL\Repositories\GenericRepository\IGenericRepository.cs" />
+    <Compile Include="DAL\TransactionModel\Manager.cs" />
+    <Compile Include="DAL\TransactionModel\Product.cs" />
+    <Compile Include="DAL\TransactionModel\Transaction.cs" />
+    <Compile Include="DAL\TransactionModel\TransactionContext.cs" />
+    <Compile Include="DAL\TransactionModel\User.cs" />
+    <Compile Include="DAL\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="BL\CSVDataModels\CSVTransaction.cs" />
+    <Compile Include="BL\CSVParsing\CSVParser.cs" />
+    <Compile Include="BL\CSVParsing\ICSVParser.cs" />
+    <Compile Include="BL\CSVTaskScheduler\ConcurrentTaskScheduler.cs" />
+    <Compile Include="BL\ReportWatching\ReportWatcher.cs" />
+    <Compile Include="BL\TransactionAdding\TransactionAddManager.cs" />
+    <Compile Include="BL\DataFactories\TransactionFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionView.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="ADO\PurchaseModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PurchaseModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ADO\PurchaseModel.edmx.diagram">
-      <DependentUpon>PurchaseModel.edmx</DependentUpon>
-    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ADO\PurchaseModel.edmx.sql" />
-    <Content Include="ADO\TransactionModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TransactionModel.Context.cs</LastGenOutput>
-      <DependentUpon>PurchaseModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="ADO\TransactionModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TransactionModel.cs</LastGenOutput>
-      <DependentUpon>PurchaseModel.edmx</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
