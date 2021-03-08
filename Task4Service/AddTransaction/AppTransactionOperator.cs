@@ -15,7 +15,7 @@ namespace Task4Service.ADO.AddTransaction
     {
         private GenericRepository<Manager> managerRepository;
 
-        private GenericRepository<Product> productRepostitory;
+        private GenericRepository<Product> productRepository;
 
         private GenericRepository<Transaction> transactionRepository;
 
@@ -26,7 +26,7 @@ namespace Task4Service.ADO.AddTransaction
         {
             context.Database.CreateIfNotExists();
             managerRepository = new GenericRepository<Manager>(context);
-            productRepostitory = new GenericRepository<Product>(context);
+            productRepository = new GenericRepository<Product>(context);
             transactionRepository = new GenericRepository<Transaction>(context);
             userRepository = new GenericRepository<User>(context);
             
@@ -34,15 +34,44 @@ namespace Task4Service.ADO.AddTransaction
 
         public void Add(CSVTransaction obj)
         {
+            var user = userRepository.Context.Set<User>()
+                .Where(usr => usr.UserName == obj.Client)
+                .FirstOrDefault();
+            if (user == null)
+            {
+                user = new User { UserName = obj.Client };
+                userRepository.Add(user);
+            }
 
-            User user = new User { UserName = obj.Client };
-            Product product = new Product { ProductName = obj.Product, Cost = obj.TotalCost };
-            Manager manager = new Manager { ManagerName = obj.Manager };
-            userRepository.Add(user);
-            productRepostitory.Add(product);
-            managerRepository.Add(manager);
-            transactionRepository.Add(new Transaction { Date = obj.Date, User = user, Product = product, 
-                Manager = manager, Coast = obj.TotalCost});
+
+            var manager = managerRepository.Context.Set<Manager>()
+                .Where(mngr => mngr.ManagerName == obj.Manager)
+                .FirstOrDefault();
+            if (manager == null)
+            {
+                manager = new Manager { ManagerName = obj.Manager };
+                managerRepository.Add(manager);
+            }
+
+
+            var product = productRepository.Context.Set<Product>()
+                .Where(prod => prod.ProductName == obj.Product)
+                .FirstOrDefault();
+            if (product == null)
+            {
+                product = new Product { ProductName = obj.Product, Cost = obj.TotalCost };
+                productRepository.Add(product);
+            }
+
+            transactionRepository.Add(new Transaction
+            {
+                Date = obj.Date,
+                User = user,
+                Product = product,
+                Manager = manager,
+                Coast = obj.TotalCost
+            });
+
             this.Save();
         }
 
@@ -58,7 +87,7 @@ namespace Task4Service.ADO.AddTransaction
 
         public void Save()
         {
-            productRepostitory.Save();
+            productRepository.Save();
             managerRepository.Save();
             userRepository.Save();
             transactionRepository.Save();

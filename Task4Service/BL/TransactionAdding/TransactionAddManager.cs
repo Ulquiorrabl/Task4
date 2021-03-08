@@ -57,7 +57,7 @@ namespace Task4Service.Buisness.TransactionAdding
                 }
                 catch(Exception e)
                 {
-                    throw e;
+                    
                 }
                 System.Threading.Thread.Sleep(3000);
             }
